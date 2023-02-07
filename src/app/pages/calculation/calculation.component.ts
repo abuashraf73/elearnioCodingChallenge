@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { Router} from '@angular/router';
 import Swal from 'sweetalert2';
+import { HelperfunctionsService } from 'src/app/services/helperfunctions.service';
 
 @Component({
   selector: 'app-calculation',
@@ -13,7 +14,7 @@ export class CalculationComponent implements OnInit {
   user_input: any;
   result:number = 0;
 
-  constructor(private authenticationServ: AuthenticationService, private route: Router,) {
+  constructor(private authenticationServ: AuthenticationService, private route: Router,private helperFuncServ: HelperfunctionsService) {
     // if(!this.authenticationServ.userAuthenticated()){
     //   this.route.navigateByUrl('/login')
     // }
@@ -57,19 +58,34 @@ export class CalculationComponent implements OnInit {
   }
 
   calculate(){
-    let temp_array: any[] = [];
-    // this.user_input = this.user_input.trim();
-    // console.log("🚀 ~ file: calculation.component.ts:62 ~ CalculationComponent ~ calculate ~ this.user_input", this.user_input)
-    this.user_input = [...this.user_input];
-    console.log("🚀 ~ file: calculation.component.ts:64 ~ CalculationComponent ~ calculate ~ this.user_input", this.user_input)
-    for(let i=0;i<this.user_input.length;i++){
-      if(this.user_input[i]=='.'){
-        this.user_input[i--] == this.user_input[i--]+'.'+this.user_input[i++]
+      let mathematical_operators : any = {
+        '+': (x: number, y: number) => x + y,
+        '-': (x: number, y: number) => x - y,
+        '*': (x: number, y: number) => x * y,
+        '/': (x: number, y:number) => y / x
       }
-      if(this.user_input[i]!=''){
-        temp_array.push(this.user_input[i])
+      const expr_part = this.user_input.split(' ');
+      let data: any = []
+      if(expr_part.length!=0){
+        expr_part.forEach((expr_part:any) => {
+          const operator = mathematical_operators[expr_part];
+          console.log(expr_part, operator)
+          if (typeof operator === 'function') 
+          {
+            const x = data.pop()
+            const y = data.pop()
+            const result = operator(x, y)
+            data.push(result)
+          } 
+          else 
+          {
+            data.push(parseFloat(expr_part))
+          }
+        });
+        this.result = Number(data.pop().toFixed(2));
+        if(this.result===0 || Number.isNaN(this.result)){
+          this.helperFuncServ.showErrorToUser('Sorry you expression is not valid.')
+        }
       }
-    }
-    console.log(temp_array)
   }
 }

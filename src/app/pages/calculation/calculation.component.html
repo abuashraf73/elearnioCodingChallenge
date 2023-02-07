@@ -6,14 +6,9 @@
     <br>
     <div *ngIf="user_input!=undefined && user_input.length!=0">
         <button type="button" id="button_box" (click)="getResult()">Calculate</button>
-        <button type="button" id="reset_box" (click)="user_input='';result=0">Reset</button>
+        <button type="button" id="reset_box" (click)="user_input='';result=0">Clear</button>
     </div>
     <div *ngIf="result!==0">
         <h2>The Result is {{result}}</h2>
-    </div>
-    <div>
-        <p>How to give input</p>
-        <p>Example: 10 6 + 8 * 78 9 /</p>
-        <small>Do not use any commas</small> 
     </div>
 </div>
