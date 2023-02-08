@@ -15,20 +15,18 @@ export class CalculationComponent implements OnInit {
   result:number = 0;
 
   constructor(private authenticationServ: AuthenticationService, private route: Router,private helperFuncServ: HelperfunctionsService) {
-    // if(!this.authenticationServ.userAuthenticated()){
-    //   this.route.navigateByUrl('/login')
-    // }
+    if(!this.authenticationServ.userAuthenticated()){
+      this.route.navigateByUrl('/login')
+    }
   }
 
   ngOnInit(): void {
   }
 
   getResult(){
-    // console.log(this.user_input)
-    // console.log([...this.user_input])
     this.calculate()
     // show an alert
-    // this.loadingAlert();
+    this.loadingAlert();
   }
 
   loadingAlert(){
@@ -36,7 +34,7 @@ export class CalculationComponent implements OnInit {
     Swal.fire({
       title: 'Calculating your input',
       html: 'I will close in <b></b> milliseconds.',
-      timer: 2000,
+      timer: 1000,
       timerProgressBar: true,
       didOpen: () => {
         Swal.showLoading()
@@ -66,18 +64,17 @@ export class CalculationComponent implements OnInit {
       }
       const expr_part = this.user_input.split(' ');
       let data: any = []
-      if(expr_part.length!=0){
+      if(expr_part.length>0){
         expr_part.forEach((expr_part:any) => {
           const operator = mathematical_operators[expr_part];
-          console.log(expr_part, operator)
-          if (typeof operator === 'function') 
+          if (typeof operator === 'function')
           {
             const x = data.pop()
             const y = data.pop()
             const result = operator(x, y)
             data.push(result)
-          } 
-          else 
+          }
+          else
           {
             data.push(parseFloat(expr_part))
           }
@@ -87,5 +84,10 @@ export class CalculationComponent implements OnInit {
           this.helperFuncServ.showErrorToUser('Sorry you expression is not valid.')
         }
       }
+  }
+
+  logoutUser(){
+    this.authenticationServ.logoutUser();
+    this.route.navigateByUrl('/login')
   }
 }
