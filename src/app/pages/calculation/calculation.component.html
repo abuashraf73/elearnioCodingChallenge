@@ -1,11 +1,13 @@
 <div class="wrapper">
   <div class="wrapper_header">
     <img src="../../../assets/elearnio_logo_grau_378.png" alt="">
-    <div id="logout" (click)="logoutUser()">
-      <img src="../../../assets/logout.svg" alt="" id="logout_img">
+    <!-- <div id="logout" (click)="logoutUser()"> -->
+      <button id="logout">
+        <img src="../../../assets/logout.svg" alt="" id="logout_img">
       <br>
-      <p>Logout</p>
-    </div>
+      <p>LOGOUT</p>
+      </button>
+    <!-- </div> -->
   </div>
   <div class="container">
       <h1>Let the calculation begin...</h1>
@@ -13,7 +15,7 @@
           <input type="text" id="input_box" [(ngModel)]="user_input">
       </div>
       <br>
-      <div *ngIf="user_input!=undefined && user_input.length!=0">
+      <div *ngIf="user_input!==undefined && user_input.length!==0">
           <button type="button" id="button_box" (click)="getResult()">Calculate</button>
           <button type="button" id="reset_box" (click)="user_input='';result=0">Clear</button>
       </div>

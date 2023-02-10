@@ -3,10 +3,13 @@
         <div class="front">
             <p class="login_word">LOG IN</p>
             <img src="https://drive.google.com/uc?export=view&id=1K5_tAX_taOQQ0wwmFx3P--V05kjvg4cu" alt="person picture">
-            <form method="post" action="">
-                <input type="text" name="username" [(ngModel)]="username" placeholder="Username" class="f1" maxlength="30" required autocomplete="off" (keyup)="validateUsername()"	>
-                <input type="password" name="password" [(ngModel)]="password" placeholder="Password" class="f1" maxlength="20" required autocomplete="off" (keyup)="validatePassword()">
-                <button class="f1" name="login" (click)="loginUser()" [hidden]="username=='' || password==''">Log in</button>
+            <form #loginForm="ngForm" (ngSubmit)="loginUser(loginForm.value)">
+                <input type="text" name="username" #username="ngModel" placeholder="Username" class="f1" minLength="3" maxlength="30" required autocomplete="off"	ngModel>
+                <br><small *ngIf="username.invalid && username.touched" style="color:red">Username is invalid</small>
+                <input type="password" name="password" #password="ngModel" placeholder="Password" class="f1" minLength="3" maxlength="20" required autocomplete="off" ngModel>
+                <br><small *ngIf="password.invalid && password.touched" style="color:red">Paswword is invalid</small>
+                <br>
+                <button class="f1" name="login" type="submit" [disabled]="loginForm.invalid">Log in</button>
             </form>
         </div>
     </div>

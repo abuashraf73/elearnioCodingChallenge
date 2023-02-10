@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { CalculationComponent } from './calculation.component';
 
 describe('CalculationComponent', () => {
@@ -9,8 +8,7 @@ describe('CalculationComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ CalculationComponent ]
-    })
-    .compileComponents();
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -19,7 +17,9 @@ describe('CalculationComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+
+  it('should calculate the expression',() => {
+    let expression = "5 8 *";
+    expect(component.calculate(expression)).toBe(40);
   });
 });

@@ -1,6 +1,6 @@
 
 .container{
-    background-color:#FFB30E;/*#a5b3e4*/
+    background-color:#FEBA4F;/*#a5b3e4*/
     height: 100vh;
     display: flex;
     align-items: center;
@@ -47,8 +47,8 @@
 
 .card .front form button
 {
-    background-color:#FFB30E;
-    padding: 12px 60px 12px 60px; 
+    background-color:#FEBA4F;
+    padding: 12px 60px 12px 60px;
     margin-top:30px;
     cursor: pointer;
 }
@@ -72,7 +72,7 @@
 .login_word
 {
     margin:30px auto;
-    border-bottom:2px solid #FFB30E;
+    border-bottom:2px solid #FEBA4F;
     width:60px;
     font-weight: bold;
 }
@@ -91,7 +91,7 @@
 .card .front span
 {
     cursor: pointer;
-    color:#FFB30E;
+    color:#FEBA4F;
 }
 /*back card*/
 .card .back
@@ -103,14 +103,14 @@
 .signup_word
 {
     margin:45px auto 15px auto;
-    border-bottom:2px solid #FFB30E;
+    border-bottom:2px solid #FEBA4F;
     width:70px;
     font-weight: bold;
 }
 
 #signUp button
 {
-    background-color:#FFB30E; 
-    padding: 12px 60px 12px 60px; 
+    background-color:#FEBA4F;
+    padding: 12px 60px 12px 60px;
     margin-top:30px
 }
