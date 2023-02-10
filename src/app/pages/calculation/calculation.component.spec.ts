@@ -22,4 +22,24 @@ describe('CalculationComponent', () => {
     let expression = "5 8 *";
     expect(component.calculate(expression)).toBe(40);
   });
+  
+  it('should correctly evaluate a complex expression', () => {
+    let expression = "5 8 + 3 -";
+    expect(component.calculate(expression)).toBe(10);
+  });
+
+  it('should correctly handle decimal numbers', () => {
+    let expression = "5.5 2.5 +";
+    expect(component.calculate(expression)).toBe(8);
+  });
+
+  it('should correctly handle order of operations', () => {
+    let expression = "5 2 * 3 +";
+    expect(component.calculate(expression)).toBe(11);
+  });
+
+  it('should return NaN for an invalid expression', () => {
+    let expression = "5 2 + *";
+    expect(component.calculate(expression)).toBeNaN();
+  });
 });
