@@ -1,6 +1,6 @@
-## Folder Structure Description
+### Folder Structure Description
 
-# Services
+#### Services
 
 1. Helperfunctions = This service is used for common functions or tasks which needs to be done in every page or component, so instead of creating them over and over again, I use this common services to inject what is necessary to the functions dynamically. 
 
@@ -8,13 +8,13 @@
 
 Other services I often liked to use are Crud Services, Global Variable Services, etc etc
 
-# Pages
+#### Pages
 
 1. Login Page = First Page where user gives their credentials.
 
 2. Calculation Page = Second Page where the expression is given. 
 
 
-## GITHUB Repository Setup
+### GITHUB Repository Setup
 
 Usually I would divide the project into testing and production branches. But for the simplicity of this project, I have simply put everything into Master branch.
